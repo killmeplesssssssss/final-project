@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-do-list</title>
+    </head>
+    <style>
+     .checked{
+         text-decoration: line-through
+     }
+    </style>
+    <body>
+       <h1>
+           My To-Do's 
+        </h1>
+        
+        <input id="text" type="text" placeholder="type here">
+        <button id="Submit"> new line </button>
+       
+        <div id="content">
+            
+           
+        </div>
+        <script>
+
+                
+            
+                document.getElementById('content').innerHTML = localStorage.getItem('listItem');
+                document.getElementById('Submit').addEventListener('mouseover', function(){
+                var a = document.createElement('li')
+
+                var c = document.createElement('input');
+                c.setAttribute('type', 'checkbox')
+                c.addEventListener('change',checkItem)
+                a.append(c)
+
+                a.append(document.getElementById('text').value);
+        
+                var b = document.createElement('button');
+                b.addEventListener('mouseover',removeItem )
+                
+
+                 
+                b.innerHTML = "X";
+                a.append(b)
+                 
+                
+
+
+                document.getElementById('content').append(a);
+                localStorage.setItem('listItem',document.getElementById('content').innerHTML)
+                })
+                function removeItem(){
+                this.parentNode.remove()
+                localStorage.setItem('listItem',document.getElementById('content').innerHTML)}      
+                
+                function checkItem(){
+                    this.parentNode.classList.toggle('checked')
+
+                    localStorage.setItem('listItem',document.getElementById('content').innerHTML)}  
+        </script>
+
+    </body>
+
+</html>
